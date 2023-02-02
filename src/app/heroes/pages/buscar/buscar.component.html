@@ -25,8 +25,8 @@
           {{ heroe.superhero }}
         </mat-option>
         <mat-option
-          [value]="''"
-          *ngIf="heroes.length === 0 && termino.length > 0"
+          value=""
+          *ngIf="heroes.length === 0 && termino.trim().length > 0"
         >
           No se ha encontrado nada con el término {{ termino }}</mat-option
         >
