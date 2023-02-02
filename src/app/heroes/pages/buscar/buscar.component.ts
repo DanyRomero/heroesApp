@@ -11,17 +11,21 @@ import { HeroesService } from '../../services/heroes.service';
 export class BuscarComponent {
   termino: string = '';
   heroes: Heroe[] = [];
-  heroeSeleccionado!: Heroe;
+  heroeSeleccionado!: Heroe | undefined;
 
   constructor(private heroesService: HeroesService) {}
 
   buscando() {
-    this.heroesService.getSugerencias(this.termino).subscribe((heroes) => {
+    this.heroesService.getSugerencias(this.termino.trim()).subscribe((heroes) => {
       this.heroes = heroes;
     });
   }
 
   opcionSeleccionada(evento: MatAutocompleteSelectedEvent) {
+    if (!evento.option.value){
+      this.heroeSeleccionado = undefined
+      return
+    }
     const heroe: Heroe = evento.option.value;
     this.termino = heroe.superhero;
     this.heroesService.getHeroePorId(heroe.id).subscribe((heroe) => {
