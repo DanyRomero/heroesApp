@@ -7,7 +7,12 @@ import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
-  styleUrls: ['./agregar.component.css'],
+  styles: [`
+    img {
+      width: 100%;
+      border-radius: 5px;
+    }
+  `],
 })
 export class AgregarComponent implements OnInit {
   publishers = [
