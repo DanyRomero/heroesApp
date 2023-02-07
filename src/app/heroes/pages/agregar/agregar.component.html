@@ -1,10 +1,12 @@
-<h1>Nuevo Héroe <small>{{heroe.superhero}}</small></h1>
+<h1>
+  Nuevo Héroe <small>{{ heroe.superhero }}</small>
+</h1>
 <div fxLayout="row" fxLayoutGap="40px">
   <div fxFlex="50" fxLayout="column">
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
       <mat-form-field fxFlex="100" fxLayout.xs="column">
         <mat-label>Super Héroe</mat-label>
-        <input type="text" matInput required [(ngModel)]="heroe.superhero"/>
+        <input type="text" matInput required [(ngModel)]="heroe.superhero" />
       </mat-form-field>
       <mat-form-field fxFlex="100">
         <mat-label>Alter Ego</mat-label>
@@ -13,15 +15,20 @@
     </div>
     <mat-form-field fxFlex="100">
       <mat-label>Primera Aparición</mat-label>
-      <input type="text" matInput required [(ngModel)]="heroe.first_appearance"/>
+      <input
+        type="text"
+        matInput
+        required
+        [(ngModel)]="heroe.first_appearance"
+      />
     </mat-form-field>
     <mat-form-field fxFlex="100">
       <mat-label>Personajes</mat-label>
-      <input type="text" matInput required [(ngModel)]="heroe.characters"/>
+      <input type="text" matInput required [(ngModel)]="heroe.characters" />
     </mat-form-field>
     <mat-form-field fxFlex="100">
       <mat-label>Creador</mat-label>
-      <mat-select required [(ngModel)]="heroe.publisher" >
+      <mat-select required [(ngModel)]="heroe.publisher">
         <mat-option
           *ngFor="let publisher of publishers"
           [value]="publisher.id"
@@ -31,18 +38,30 @@
     </mat-form-field>
     <mat-form-field fxFlex="100">
       <mat-label>Foto Url</mat-label>
-      <input type="url" matInput required [(ngModel)]="heroe.alt_img"/>
+      <input type="url" matInput required [(ngModel)]="heroe.alt_img" />
     </mat-form-field>
     <br />
-    <button
-      mat-raised-button
-      color="primary"
-      style="position: relative; padding: 20px"
-      (click)="guardar()"
-    >
-      <mat-icon>edit</mat-icon>
-      Guardar
-    </button>
+    <div fxLayout>
+      <button
+        mat-raised-button
+        color="primary"
+        style="position: relative; padding: 20px"
+        (click)="guardar()"
+      >
+        <mat-icon>edit</mat-icon>
+        Guardar
+      </button>
+      <span class="spacer"></span>
+      <button *ngIf="heroe.id"
+        mat-raised-button
+        color="warn"
+        style="position: relative; padding: 20px"
+        (click)="borrar()"
+      >
+        <mat-icon>remove</mat-icon>
+        Borrar
+      </button>
+    </div>
   </div>
   <div fxFlex="50">
     <img [src]="heroe | imagen" />
